@@ -1,0 +1,133 @@
+
+CREATE TABLE assignments (
+    AssignmentId CHAR(11),
+    EmployeeId CHAR(11),
+    RequirementId CHAR(11)
+);
+
+CREATE TABLE departments (
+    DepartmentId CHAR(11),
+    Name CHAR(45),
+    Location CHAR(45),
+    BedsTotal CHAR(11)
+);
+
+CREATE TABLE employee_certifications (
+    EmployeeCertId CHAR(11),
+    EmployeeId CHAR(11),
+    RoleId CHAR(11)
+);
+
+CREATE TABLE employees (
+    EmployeeId CHAR(11),
+    FirstName CHAR(45),
+    MiddleName CHAR(45),
+    LastName CHAR(45),
+    StreetAddress CHAR(45),
+    City CHAR(45),
+    State CHAR(45),
+    Zip CHAR(11),
+    FT_PT CHAR(4),
+    Salary CHAR(20),
+    Phone CHAR(45)
+);
+
+CREATE TABLE roles (
+    RoleId CHAR(11),
+    Title CHAR(45),
+    Description CHAR(255)
+);
+
+CREATE TABLE schedules (
+    ScheduleId CHAR(11),
+    WeekNumber CHAR(11)
+);
+
+CREATE TABLE shifts (
+    ShiftId CHAR(11),
+    StartTime CHAR(20),
+    Duration CHAR(11)
+);
+
+CREATE TABLE staff_requirements (
+    RequirementId CHAR(11),
+    DepartmentId CHAR(11),
+    RoleId CHAR(11),
+    ShiftId CHAR(11),
+    ScheduleId CHAR(11),
+    StartDate CHAR(20),
+    Quantity CHAR(11),
+    DayOfWeek CHAR(4)
+);
+
+INSERT INTO employees (EmployeeId, FirstName, MiddleName, LastName, StreetAddress, City, State, Zip, FT_PT, Salary, Phone) VALUES 
+('2', 'Jodi', 'J.', 'Blackford', '1800 Johnson Street', 'Raleigh', 'NC', '27601', '1', '22.7', '919-833-0135'),
+('3', 'Christopher', 'V.', 'Boyers', '4519 Hall Valley Drive', 'Pochar Pleasant', 'WV', '25550', '1', '22.7', '304-674-0126'),
+('4', 'Michael', 'V.', 'Cope', '1403 Ella Street', 'Redwood City', 'CA', '94063', '1', '22', '650-306-3426'),
+('1', 'Keith', 'K.', 'Barajas', '3883 Bailey Drive', 'Marion', 'IA', '52302', '1', '22', '319-447-9185');
+
+INSERT INTO departments (DepartmentId, Name, Location, BedsTotal) VALUES 
+('1', 'Emergency', '1F', '20'),
+('2', 'Surgery', '2F', '5'),
+('3', 'Maternity', '3F', '10');
+
+INSERT INTO roles (RoleId, Title, Description) VALUES 
+('1', 'Nurse', 'A registered nurse'),
+('2', 'Surgeon', 'A specialized surgeon'),
+('3', 'Doctor', 'A family doctor');
+
+INSERT INTO shifts (ShiftId, StartTime, Duration) VALUES 
+('1', '00:00:00', '6'),
+('2', '06:00:00', '6'),
+('3', '12:00:00', '6'),
+('4', '18:00:00', '6');
+
+INSERT INTO employee_certifications (EmployeeCertId, EmployeeId, RoleId) VALUES 
+('1', '1', '1'),
+('2', '2', '1'),
+('3', '3', '2'),
+('4', '4', '2'),
+('5', '5', '3');
+
+INSERT INTO schedules (ScheduleId, WeekNumber) VALUES 
+('1', '1'),
+('2', '2'),
+('3', '3'),
+('4', '4'),
+('5', '5'),
+('6', '6');
+
+INSERT INTO staff_requirements (RequirementId, DepartmentId, RoleId, ShiftId, ScheduleId, StartDate, Quantity, DayOfWeek) VALUES 
+('1', '1', '1', '3', '1', '2024-05-16', '1', 'TR'),
+('2', '2', '2', '3', '1', '2024-05-16', '2', 'TR'),
+('3', '2', '3', '3', '1', '2024-05-16', '2', 'TR'),
+('4', '1', '1', '1', '1', '2024-05-17', '1', 'FR'),
+('5', '2', '2', '4', '1', '2024-05-17', '2', 'FR'),
+('6', '3', '3', '1', '1', '2024-05-18', '2', 'SA'),
+('7', '1', '1', '2', '1', '2024-05-19', '1', 'SU'),
+('8', '1', '1', '4', '1', '2024-05-19', '1', 'SU'),
+('9', '3', '3', '4', '1', '2024-05-21', '1', 'TU'),
+('10', '1', '1', '1', '1', '2024-05-22', '1', 'WE');
+
+INSERT INTO assignments (AssignmentId, EmployeeId, RequirementId) VALUES 
+('1', '1', '1'),
+('2', '2', '5'),
+('3', '3', '6'),
+('4', '4', '8'),
+('5', '1', '10');
+
+SELECT 
+    e.LastName, 
+    e.FirstName, 
+    d.Name, 
+    r.Title, 
+    sr.StartDate, 
+    sr.DayOfWeek, 
+    s.StartTime
+FROM 
+    employees e
+    JOIN assignments a ON e.EmployeeId = a.EmployeeId
+    JOIN staff_requirements sr ON a.RequirementId = sr.RequirementId
+    JOIN shifts s ON sr.ShiftId = s.ShiftId
+    JOIN departments d ON sr.DepartmentId = d.DepartmentId
+    JOIN roles r ON sr.RoleId = r.RoleId;

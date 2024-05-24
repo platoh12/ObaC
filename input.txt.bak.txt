@@ -1,0 +1,281 @@
+CREATE TABLE assignments (
+    AssignmentId CHAR(11),
+    EmployeeId CHAR(11),
+    RequirementId CHAR(11)
+);
+
+CREATE TABLE departments (
+    DepartmentId CHAR(11),
+    Name CHAR(45),
+    Location CHAR(45),
+    BedsTotal CHAR(11)
+);
+
+CREATE TABLE employee_certifications (
+    EmployeeCertId CHAR(11),
+    EmployeeId CHAR(11),
+    RoleId CHAR(11)
+);
+
+CREATE TABLE employees (
+    EmployeeId CHAR(11),
+    FirstName CHAR(45),
+    MiddleName CHAR(45),
+    LastName CHAR(45),
+    StreetAddress CHAR(45),
+    City CHAR(45),
+    State CHAR(45),
+    Zip CHAR(11),
+    FT_PT CHAR(4),
+    Salary CHAR(20),
+    Phone CHAR(45)
+);
+
+CREATE TABLE roles (
+    RoleId CHAR(11),
+    Title CHAR(45),
+    Description CHAR(255)
+);
+
+CREATE TABLE schedules (
+    ScheduleId CHAR(11),
+    WeekNumber CHAR(11)
+);
+
+CREATE TABLE shifts (
+    ShiftId CHAR(11),
+    StartTime CHAR(20),
+    Duration CHAR(11)
+);
+
+CREATE TABLE staff_requirements (
+    RequirementId CHAR(11),
+    DepartmentId CHAR(11),
+    RoleId CHAR(11),
+    ShiftId CHAR(11),
+    ScheduleId CHAR(11),
+    StartDate CHAR(20),
+    Quantity CHAR(11),
+    DayOfWeek CHAR(4)
+);
+
+INSERT INTO employees (EmployeeId, FirstName, MiddleName, LastName, StreetAddress, City, State, Zip, FT_PT, Salary, Phone) VALUES
+('15', 'Christine', 'D.', 'Stringer', '2661 Ryan Road', 'Sioux Falls', 'SD', '57104', '1', '22.7', '605-653-0135'),
+('2', 'Jodi', 'J.', 'Blackford', '1800 Johnson Street', 'Raleigh', 'NC', '27601', '1', '22.7', '919-833-0135'),
+('6', 'Robert', 'I.', 'Gordon', '1421 Roosevelt Street', 'Fremont', 'CA', '94539', '1', '22.7', '415-390-8471'),
+('3', 'Christopher', 'V.', 'Boyers', '4519 Hall Valley Drive', 'Pochar Pleasant', 'WV', '25550', '1', '22.7', '304-674-0126'),
+('9', 'Karen', 'M.', 'Kadlec', '3970 Parrill Court', 'Plymouth', 'IN', '46563', '1', '28', '219-604-4539'),
+('14', 'Deborah', 'D.', 'Reid', '4818 New Creek Road', 'Fort Wayne', 'IN', '46802', '1', '28', '260-242-7896'),
+('4', 'Michael', 'V.', 'Cope', '1403 Ella Street', 'Redwood City', 'CA', '94063', '1', '22', '650-306-3426'),
+('11', 'Jared', 'J.', 'Nelson', '669 Ottis Street', 'Shawnee', 'OK', '74801', '1', '22', '405-275-4143'),
+('10', 'Henry', 'R.', 'Maynard', '4786 Clifford Street', 'Concord', 'CA', '94520', '1', '22', '510-697-8950'),
+('12', 'Kimberly', 'A.', 'Paddock', '1643 Hillcrest Avenue', 'Bracharree', 'MA', '2184', '1', '22', '781-843-4678'),
+('13', 'Rose', 'F.', 'Price', '1333 Lunetta Street', 'Tampa', 'FL', '33634', '1', '22', '941-284-3995'),
+('7', 'Karen', 'C.', 'Hebb', '4128 Cedar Lane', 'Boston', 'MA', '2114', '1', '22', '617-570-2611'),
+('5', 'Kendra', 'J.', 'Dawson', '3234 John Avenue', 'Tekonsha', 'MI', '49092', '1', '22', '517-767-6328'),
+('16', 'Denise', 'D.', 'Westra', '2772 Round Table Drive', 'Cincinnati', 'OH', '45203', '1', '22', '513-826-7940'),
+('1', 'Keith', 'K.', 'Barajas', '3883 Bailey Drive', 'Marion', 'IA', '52302', '1', '22', '319-447-9185'),
+('8', 'Nola', 'C.', 'Huffman', '3860 Hillhaven Drive', 'Bellflower', 'CA', '90706', '1', '22', '323-796-8238');
+
+INSERT INTO departments (DepartmentId, Name, Location, BedsTotal) VALUES
+('1', 'Emergency', '1F', '20'),
+('2', 'Surgery', '2F', '5'),
+('3', 'Maternity', '3F', '10');
+
+INSERT INTO roles (RoleId, Title, Description) VALUES
+('1', 'Nurse', 'A registered nurse'),
+('2', 'Surgeon', 'A specialized surgeon'),
+('3', 'Doctor', 'A family doctor');
+
+INSERT INTO shifts (ShiftId, StartTime, Duration) VALUES
+('1', '00:00:00', '6'),
+('2', '06:00:00', '6'),
+('3', '12:00:00', '6'),
+('4', '18:00:00', '6');
+
+INSERT INTO employee_certifications (EmployeeCertId, EmployeeId, RoleId) VALUES
+('1', '1', '1'),
+('2', '2', '1'),
+('3', '3', '1'),
+('4', '4', '2'),
+('5', '5', '2'),
+('6', '6', '3'),
+('7', '7', '1'),
+('8', '8', '1'),
+('9', '9', '3'),
+('10', '10', '1'),
+('11', '11', '1'),
+('12', '12', '1'),
+('13', '13', '1'),
+('14', '14', '1'),
+('15', '15', '3'),
+('16', '16', '3');
+
+INSERT INTO schedules (ScheduleId, WeekNumber) VALUES
+('1', '1'),
+('2', '2'),
+('3', '3'),
+('4', '4'),
+('5', '5'),
+('6', '6');
+
+INSERT INTO staff_requirements (RequirementId, DepartmentId, RoleId, ShiftId, ScheduleId, StartDate, Quantity, DayOfWeek) VALUES
+('1', '1', '1', '3', '1', '2024-05-16', '1', 'TR'),
+('2', '1', '2', '1', '1', '2024-05-16', '1', 'TR'),
+('3', '1', '3', '3', '1', '2024-05-16', '1', 'TR'),
+('4', '2', '1', '3', '1', '2024-05-16', '1', 'TR'),
+('5', '2', '2', '3', '1', '2024-05-16', '2', 'TR'),
+('6', '2', '3', '3', '1', '2024-05-16', '2', 'TR'),
+('7', '2', '2', '1', '1', '2024-05-16', '2', 'TR'),
+('8', '3', '3', '4', '1', '2024-05-16', '1', 'TR'),
+('9', '3', '3', '3', '1', '2024-05-16', '1', 'TR'),
+('10', '3', '3', '4', '1', '2024-05-16', '1', 'TR'),
+('11', '1', '1', '1', '1', '2024-05-17', '1', 'FR'),
+('12', '1', '2', '2', '1', '2024-05-17', '1', 'FR'),
+('13', '1', '3', '2', '1', '2024-05-17', '1', 'FR'),
+('14', '2', '1', '3', '1', '2024-05-17', '1', 'FR'),
+('15', '2', '2', '4', '1', '2024-05-17', '2', 'FR'),
+('16', '2', '3', '2', '1', '2024-05-17', '1', 'FR'),
+('17', '2', '2', '1', '1', '2024-05-17', '1', 'FR'),
+('18', '2', '3', '2', '1', '2024-05-17', '1', 'FR'),
+('19', '3', '3', '3', '1', '2024-05-17', '2', 'FR'),
+('20', '3', '3', '4', '1', '2024-05-17', '1', 'FR'),
+('21', '1', '1', '1', '1', '2024-05-18', '1', 'SA'),
+('22', '2', '1', '2', '1', '2024-05-18', '1', 'SA'),
+('23', '2', '2', '3', '1', '2024-05-18', '1', 'SA'),
+('24', '3', '3', '4', '1', '2024-05-18', '1', 'SA'),
+('25', '3', '2', '3', '1', '2024-05-18', '2', 'SA'),
+('26', '3', '1', '2', '1', '2024-05-18', '2', 'SA'),
+('27', '3', '3', '1', '1', '2024-05-18', '2', 'SA'),
+('28', '1', '1', '2', '1', '2024-05-19', '1', 'SU'),
+('29', '1', '1', '4', '1', '2024-05-19', '1', 'SU'),
+('30', '1', '2', '3', '1', '2024-05-19', '2', 'SU'),
+('31', '1', '3', '4', '1', '2024-05-19', '1', 'SU'),
+('32', '1', '3', '3', '1', '2024-05-19', '2', 'SU'),
+('33', '2', '2', '1', '1', '2024-05-19', '1', 'SU'),
+('34', '2', '3', '2', '1', '2024-05-19', '1', 'SU'),
+('35', '3', '2', '3', '1', '2024-05-19', '1', 'SU'),
+('36', '1', '1', '1', '1', '2024-05-20', '1', 'MO'),
+('37', '1', '3', '2', '1', '2024-05-20', '1', 'MO'),
+('38', '1', '2', '3', '1', '2024-05-20', '1', 'MO'),
+('39', '1', '3', '4', '1', '2024-05-20', '1', 'MO'),
+('40', '2', '1', '2', '1', '2024-05-20', '2', 'MO'),
+('41', '2', '2', '3', '1', '2024-05-20', '1', 'MO'),
+('42', '2', '3', '4', '1', '2024-05-20', '2', 'MO'),
+('43', '2', '3', '3', '1', '2024-05-20', '1', 'MO'),
+('44', '3', '1', '3', '1', '2024-05-20', '2', 'MO'),
+('45', '3', '3', '4', '1', '2024-05-20', '1', 'MO'),
+('46', '3', '3', '2', '1', '2024-05-20', '2', 'MO'),
+('47', '3', '3', '3', '1', '2024-05-20', '1', 'MO'),
+('48', '1', '1', '4', '1', '2024-05-21', '1', 'TU'),
+('49', '1', '3', '2', '1', '2024-05-21', '1', 'TU'),
+('50', '2', '3', '1', '1', '2024-05-21', '1', 'TU'),
+('51', '2', '1', '4', '1', '2024-05-21', '2', 'TU'),
+('52', '2', '2', '1', '1', '2024-05-21', '1', 'TU'),
+('53', '2', '2', '3', '1', '2024-05-21', '1', 'TU'),
+('54', '3', '1', '2', '1', '2024-05-21', '2', 'TU'),
+('55', '3', '2', '3', '1', '2024-05-21', '1', 'TU'),
+('56', '3', '3', '4', '1', '2024-05-21', '1', 'TU'),
+('57', '3', '2', '3', '1', '2024-05-21', '1', 'TU'),
+('58', '3', '2', '4', '1', '2024-05-21', '1', 'TU'),
+('59', '1', '1', '1', '1', '2024-05-22', '1', 'WE'),
+('60', '1', '1', '2', '1', '2024-05-22', '1', 'WE'),
+('61', '1', '2', '3', '1', '2024-05-22', '1', 'WE'),
+('62', '1', '2', '2', '1', '2024-05-22', '1', 'WE'),
+('63', '1', '3', '1', '1', '2024-05-22', '1', 'WE'),
+('64', '1', '3', '4', '1', '2024-05-22', '2', 'WE'),
+('65', '2', '1', '3', '1', '2024-05-22', '1', 'WE'),
+('66', '2', '2', '2', '1', '2024-05-22', '1', 'WE'),
+('67', '2', '3', '3', '1', '2024-05-22', '2', 'WE'),
+('68', '3', '1', '2', '1', '2024-05-22', '1', 'WE'),
+('69', '3', '2', '4', '1', '2024-05-22', '1', 'WE'),
+('70', '3', '3', '4', '1', '2024-05-22', '1', 'WE');
+
+INSERT INTO assignments (AssignmentId, EmployeeId, RequirementId) VALUES
+('1', '1', '1'),
+('2', '2', '2'),
+('3', '3', '3'),
+('4', '4', '4'),
+('5', '5', '5'),
+('6', '6', '6'),
+('7', '7', '7'),
+('8', '8', '8'),
+('9', '9', '9'),
+('10', '10', '10'),
+('11', '1', '11'),
+('12', '2', '12'),
+('13', '5', '13'),
+('14', '7', '14'),
+('15', '9', '15'),
+('16', '10', '16'),
+('17', '11', '17'),
+('18', '13', '18'),
+('19', '15', '19'),
+('20', '16', '20'),
+('21', '5', '21'),
+('22', '6', '22'),
+('23', '7', '23'),
+('24', '8', '24'),
+('25', '9', '25'),
+('26', '10', '26'),
+('27', '11', '27'),
+('28', '4', '28'),
+('29', '6', '29'),
+('30', '7', '30'),
+('31', '8', '31'),
+('32', '11', '32'),
+('33', '14', '33'),
+('34', '15', '34'),
+('35', '16', '35'),
+('36', '4', '36'),
+('37', '5', '37'),
+('38', '6', '38'),
+('39', '7', '39'),
+('40', '8', '40'),
+('41', '9', '41'),
+('42', '10', '42'),
+('43', '11', '43'),
+('44', '12', '44'),
+('45', '13', '45'),
+('46', '14', '46'),
+('47', '15', '47'),
+('48', '1', '48'),
+('49', '2', '49'),
+('50', '3', '50'),
+('51', '4', '51'),
+('52', '5', '52'),
+('53', '5', '53'),
+('54', '6', '54'),
+('55', '7', '55'),
+('56', '8', '56'),
+('57', '9', '57'),
+('58', '10', '58'),
+('59', '4', '59'),
+('60', '2', '60'),
+('61', '5', '61'),
+('62', '6', '62'),
+('63', '7', '63'),
+('64', '9', '64'),
+('65', '10', '65'),
+('66', '11', '66'),
+('67', '12', '67'),
+('68', '14', '68'),
+('69', '15', '69'),
+('70', '16', '70');
+
+-- Query 1
+SELECT LastName, FirstName, Name, Title, StartDate, DayOfWeek, StartTime
+FROM employees
+JOIN assignments ON employees.EmployeeId = assignments.EmployeeId
+JOIN staff_requirements ON assignments.RequirementId = staff_requirements.RequirementId
+JOIN shifts ON staff_requirements.ShiftId = shifts.ShiftId
+JOIN departments ON staff_requirements.DepartmentId = departments.DepartmentId
+JOIN roles ON staff_requirements.RoleId = roles.RoleId;
+
+-- Query 2
+SELECT StartDate, DayOfWeek, StartTime, Name, Title, Quantity
+FROM staff_requirements
+JOIN departments ON staff_requirements.DepartmentId = departments.DepartmentId
+JOIN roles ON staff_requirements.RoleId = roles.RoleId
+JOIN shifts ON staff_requirements.ShiftId = shifts.ShiftId
+WHERE staff_requirements.RequirementId NOT IN (SELECT RequirementId FROM assignments);
